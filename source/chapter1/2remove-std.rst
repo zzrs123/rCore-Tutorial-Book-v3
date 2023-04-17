@@ -97,6 +97,22 @@
          Compiling os v0.1.0 (/home/shinbokuow/workspace/v3/rCore-Tutorial-v3/os)
       error: `#[panic_handler]` function required, but not found
 
+.. note::
+
+   如果你的代码出现如下错误：
+   .. code-block:: console
+   
+      $cargo build
+         
+       Compiling os v0.1.0 (/home/zzrs123/github-classroom/duos/os)
+      error[E0463]: can't find crate for `core`
+        |
+        = note: the `riscv64gc-unknown-none-elf` target may not be installed
+        = help: consider downloading the target with `rustup target add riscv64gc-unknown-none-elf`
+        = help: consider building the standard library from source with `cargo build -Zbuild-std
+        
+    仔细检查自己的交叉编译环境，如果无误则为rustup目标添加riscv64gc-unknown-none-elf，也就是`rustup target add riscv64gc-unknown-none-elf`。
+
 在使用 Rust 编写应用程序的时候，我们常常在遇到了一些无法恢复的致命错误（panic），导致程序无法继续向下运行。这时手动或自动调用 ``panic!`` 宏来打印出错的位置，让软件能够意识到它的存在，并进行一些后续处理。 ``panic!`` 宏最典型的应用场景包括断言宏 ``assert!`` 失败或者对 ``Option::None/Result::Err`` 进行 ``unwrap`` 操作。所以Rust编译器在编译程序时，从安全性考虑，需要有 ``panic!`` 宏的具体实现。
 
 .. chyyuu  rust-lang/rust/library/std/src/panic.rs  `pub macro panic_2015/2021 {`
